@@ -15,11 +15,14 @@ MAX_CHARS = 200
 MESSAGE = "I didn't send you into a lake \u2014 I sent you to a lakeside wedding you weren't invited to, forty minutes late. The map said turn left. Blame the map."
 
 
-def main():
-    assert 1 <= len(MESSAGE) <= MAX_CHARS, f"message is {len(MESSAGE)} chars, must be 1-200"
-    assert MESSAGE.strip(), "message must not be only whitespace"
-    assert "\n" not in MESSAGE, "message must be a single line"
+def validate_message(text):
+    assert 1 <= len(text) <= MAX_CHARS, f"message is {len(text)} chars, must be 1-200"
+    assert text.strip(), "message must not be only whitespace"
+    assert "\n" not in text, "message must be a single line"
 
+
+def main():
+    validate_message(MESSAGE)
     os.makedirs(OUT, exist_ok=True)
     with open(os.path.join(OUT, "entry.txt"), "w", encoding="utf-8") as f:
         f.write(MESSAGE)
